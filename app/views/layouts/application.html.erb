@@ -9,6 +9,21 @@
 </head>
 <body>
 	<%= render 'layouts/header' %>
+  <div id="header">
+    <% if signed_in? -%>
+    	signed in as <%= current_user.email %>
+    	<%= link_to t(".profile"), user_path(current_user.id) %>
+      <%= button_to t(".sign_out"), sign_out_path, method: :delete %>
+    <% else -%>
+      <%= link_to t(".sign_in"), sign_in_path %>
+    <% end -%>
+  </div>
+
+  <div id="flash">
+    <% flash.each do |key, value| -%>
+      <div id="flash_<%= key %>"><%=h value %></div>
+    <% end %>
+  </div>
 
   <%= yield %>
 
