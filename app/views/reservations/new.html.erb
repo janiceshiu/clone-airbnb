@@ -1,0 +1,20 @@
+<br>
+<h4>Use this form to create a new reservation for listing <%= params[:listing_id]%></h4>
+<div>
+	<%= form_for :reservation, url: reservations_path do |f| %>
+	  <%= f.label :no_of_guests %>:
+	  <%= select(:reservation, :no_of_guests, (1..@listing.no_of_guests), :selected => 1) %><br>
+
+	  <%= f.label :check_in_date %>:
+	  <%= f.date_field :check_in_date %><br>
+
+	  <%= f.label :check_out_date %>:
+	  <%= f.date_field :check_out_date %><br>
+
+	  <%= f.hidden_field :listing_id, value: params[:listing_id] %>
+
+	  <%= f.submit type: 'submit'%><br>
+
+	<% end %>
+<div>
+

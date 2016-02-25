@@ -1,0 +1,12 @@
+<h4>Your Reservations</h4>
+
+<% @user.reservations.each do |r| %>
+		<li>
+			<ul><%= link_to "You booked listing #{r.listing_id}", listing_path(r.id) %> by <%= r.user.name %></ul>
+			<ul>Check-Out Date: <%= r.check_out_date %></ul>
+			<ul>Check-In Date: <%= r.check_in_date %></ul>
+			<ul>Your number of guests: <%= r.no_of_guests %></ul>
+			<ul><%= link_to "Edit Reservation", edit_reservation_path(r.id) %> --- <%= link_to "Delete Reservation", root_path %></ul>
+			<br><br>
+		</li>
+	<% end %>

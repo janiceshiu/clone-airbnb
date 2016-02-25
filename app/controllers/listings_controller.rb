@@ -25,17 +25,17 @@ class ListingsController < ApplicationController
 	end
 
 	def update
+		# WIP
 	end
 
 	def destroy
+		# WIP
 	end
 
   private
-  # Using a private method to encapsulate the permissible parameters is just a good pattern
-  # since you'll be able to reuse the same permit list between create and update. Also, you can specialize
-  # this method with per-user checking of permissible attributes.
   def listing_params
-    params.require(:listing).permit(:rent_per_night, :no_of_guests, :street_address, :city,
+    params.require(:listing).permit(:user_id, :rent_per_night, :no_of_guests, :street_address, :city,
     	:state, :country, :room_type, :description, :house_rules)
   end
+
 end
