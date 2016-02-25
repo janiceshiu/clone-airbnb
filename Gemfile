@@ -15,6 +15,8 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 # Use clearance for user management
 gem 'clearance'
+# Use figaro to securely configure Rails applications
+gem 'figaro'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
