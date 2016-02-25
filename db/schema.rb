@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160225022308) do
+ActiveRecord::Schema.define(version: 20160225084640) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20160225022308) do
     t.text     "house_rules"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.json     "images"
   end
 
   create_table "reservations", force: :cascade do |t|
@@ -58,6 +59,7 @@ ActiveRecord::Schema.define(version: 20160225022308) do
     t.string   "country"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
+    t.string   "avatar"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree

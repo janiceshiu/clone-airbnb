@@ -1,3 +1,13 @@
-test
+<% provide(:title, "Edit User") %>
+
+<br><br>
+Upload images for your listings
+
+<%= form_for(@listing) do |f| %>
+	<%= f.file_field :images, multiple: true %><br>
+
+
+	<%= f.submit %>
+<% end %>
 
 You are editing the listing with the ID <%= @listing.id %>
