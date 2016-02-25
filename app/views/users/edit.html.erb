@@ -1,0 +1,11 @@
+<% provide(:title, "Edit User") %>
+
+<br><br>
+Upload an avatar
+
+<%= form_for(@user) do |f| %>
+	<%= f.file_field :avatar %><br>
+
+
+	<%= f.submit %>
+<% end %>

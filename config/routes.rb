@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get 'contact' => 'static_pages#contact'
 
   # Users
-  resources :users, only: [:show]
+  resources :users, only: [:show, :edit, :update]
 
   # Clearance Default Routes
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]

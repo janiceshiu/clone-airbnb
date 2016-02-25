@@ -13,6 +13,7 @@
     <% if signed_in? -%>
     	Welcome. You are signed in as <%= current_user.name %>.
     	<%= link_to t(".profile"), user_path(current_user.id) %>
+    	<%= link_to t(".update profile"), edit_user_path(current_user.id) %>
     	<%= link_to t(".create new listing"), new_listing_path %>
       <%= button_to t(".sign_out"), sign_out_path, method: :delete %>
     <% else -%>

@@ -1,5 +1,5 @@
 <% provide(:title, "Profile") %>
-
+User Avatar: <%= image_tag @user.avatar_url(:thumb) %>
 <br>
 
 <% if @user.id == current_user.id %>
