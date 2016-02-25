@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
 	# Static Pages
   root 'static_pages#home'
   get 'help' => 'static_pages#help'
@@ -25,6 +24,9 @@ Rails.application.routes.draw do
 
   # Listings
   resources :listings, except: [:destroy]
+
+  # Reservations
+  resources :reservations
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

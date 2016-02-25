@@ -5,11 +5,11 @@
 <% if @user.id == current_user.id %>
 	<h4> My Listings </h4>
 	<p>You have <%= current_user.listings.length %> listings.</p>
-	<p><%= link_to "View your listings", listings_path %>
+	<p><%= link_to "View your listings", listings_path %></p>
 
 	<% @user.listings.each do |l| %>
 		<li>
-			<ul>Listing ID: <%= l.id %></ul>
+			<ul><%= link_to "View Listing #{l.id}", listing_path(l.id) %></ul>
 			<ul>Rent per night: <%= l.rent_per_night %></ul>
 			<ul>Property Type: <%= l.property_type %></ul>
 			<ul>City: <%= l.city %></ul>
@@ -18,16 +18,34 @@
 			<ul>Max number of guests: <%= l.no_of_guests %></ul>
 			<ul>Description: <%= l.description %></ul>
 			<ul>House Rules: <%= l.house_rules %></ul>
-			<ul> <%= link_to "Edit Listing", edit_listing_path(l.id) %> --- <%= link_to "Delete Listing", root_path %></ul>
+			<ul><%= link_to "Edit Listing", edit_listing_path(l.id) %> --- <%= link_to "Delete Listing", root_path %></ul>
 			<br><br>
 		</li>
 	<% end %>
 
 
 	<h4>My Reservations</h4>
-	<p>You have X reservations.</p>
+	<p>You have <%= @user.reservations.length %> reservations.</p>
+	<p><%= link_to "View your reservations", reservations_path %></p>
 
 <% else %>
 	You are viewing <%= @user.name %>'s profile<br>
 	This user has <%= @user.listings.length %> listings.<br><br>
+	<p><%= link_to "View their listings", listings_path %>
+
+	<% @user.listings.each do |l| %>
+		<li>
+			<ul><%= link_to "View Listing #{l.id}", listing_path(l.id) %></ul>
+			<ul>Rent per night: <%= l.rent_per_night %></ul>
+			<ul>Property Type: <%= l.property_type %></ul>
+			<ul>City: <%= l.city %></ul>
+			<ul>State: <%= l.state %></ul>
+			<ul>Country: <%= l.country %></ul>
+			<ul>Max number of guests: <%= l.no_of_guests %></ul>
+			<ul>Description: <%= l.description %></ul>
+			<ul>House Rules: <%= l.house_rules %></ul>
+			<ul><%= link_to t(".reserve this listing"), new_reservation_path + "?listing_id=#{l.id}" %></ul>
+			<br><br>
+		</li>
+	<% end %>
 <% end %>

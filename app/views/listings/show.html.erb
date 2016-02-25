@@ -8,4 +8,8 @@
 	<ul>Country: <%= @listing.country %></ul>
 	<ul>Rent per night: <% @listing.rent_per_night %></ul>
 	<ul>House Rules: <% @listing.house_rules %></ul>
+
+	<% if @listing.user.id != current_user.id %>
+	<%= link_to t(".reserve this listing"), new_reservation_path %>
+	<% end %>
 </li>
