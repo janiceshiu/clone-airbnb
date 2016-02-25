@@ -5,8 +5,8 @@ require 'rails/all'
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
-# require 'carrierwave'
-# require 'carrierwave/orm/activerecord'
+require 'carrierwave/orm/activerecord'
+require 'carrierwave'
 
 module CloneAirbnb
   class Application < Rails::Application

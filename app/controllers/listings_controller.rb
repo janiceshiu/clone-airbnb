@@ -25,6 +25,9 @@ class ListingsController < ApplicationController
 	end
 
 	def update
+		listing = Listing.find(params[:id])
+  	listing.update(listing_params)
+  	redirect_to listing_path
 		# WIP
 	end
 
@@ -35,7 +38,7 @@ class ListingsController < ApplicationController
   private
   def listing_params
     params.require(:listing).permit(:user_id, :rent_per_night, :no_of_guests, :street_address, :city,
-    	:state, :country, :room_type, :description, :house_rules)
+    	:state, :country, :room_type, :description, :house_rules, {images: []})
   end
 
 end
