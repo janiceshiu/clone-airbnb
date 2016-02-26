@@ -17,7 +17,9 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'clearance'
 # Use figaro to securely configure Rails applications
 gem 'figaro'
-
+# Use omniauth and associated gems to authenticate users via disparate systems
+gem 'omniauth'
+gem 'omniauth-facebook'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
