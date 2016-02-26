@@ -1,1 +1,9 @@
-sample index page
+<h4>All listings</h4>
+		<% @listings.each do |l| %>
+			ID: <%= l.id %><br>
+			Max # of guests: <%= l.no_of_guests %><br><br>
+		<%end%>
+
+<% unless @listings.empty? %>
+	<%= will_paginate @listings %>
+<% end %>
