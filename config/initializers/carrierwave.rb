@@ -3,7 +3,7 @@ CarrierWave.configure do |config|
   config.fog_credentials = {
     provider:               "AWS",
     aws_access_key_id:      ENV["s3_key"],
-    aws_secret_access_key:  ENV["s3-secret"],
+    aws_secret_access_key:  ENV["s3_secret"],
     region:                 "ap-southeast-1",
     host: 									"https://s3-ap-southeast-1.amazonaws.com/",
     endpoint:  							"https://s3-ap-southeast-1.amazonaws.com/airbnb-clone-site"

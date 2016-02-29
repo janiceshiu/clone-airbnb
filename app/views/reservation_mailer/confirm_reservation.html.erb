@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>Thank you for making a reservation, <%= @user.name %>.</p>
+    <p>You booked listing <%= @reservation.listing.id %>.</p>
+    <p>To view your reservations, please log in <%=link_to("here.", sign_in_url( :only_path => false ))%></p>
+  </body>
+</html>

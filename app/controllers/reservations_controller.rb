@@ -11,7 +11,9 @@ class ReservationsController < ApplicationController
   def create
 		new_reservation = Reservation.new(reservation_params)
 		new_reservation.user_id = current_user.id
-		if new_reservation.save
+		# if new_reservation.user_id == current_user.id # this is to prevent a lot of reservations being created during testing.
+		if new_reservation.save # commenting out to prevent a lot of reservations being created during testing.
+			ReservationMailer.confirm_reservation(new_reservation).deliver_later
 			redirect_to user_path(current_user.id)
 		else
 			redirect_to new_reservation_path

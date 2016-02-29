@@ -14,11 +14,10 @@
 				<li>House Rules: <% l.house_rules %></li>
 			</ul>
 
-
-	<% if l.id != current_user.id %>
-	<%= link_to t(".reserve this listing"), new_reservation_path %><br>
-	<% end %>
-		<%end%>
+			<% if l.user.id != current_user.id %>
+				<%= link_to t(".reserve this listing"), :controller => "reservations", :action => "new", :listing_id => l.id  %><br>
+			<% end %>
+				<%end%>
 
 <% unless @listings.empty? %>
 	<%= will_paginate @listings %>
