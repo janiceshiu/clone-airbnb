@@ -1,7 +1,23 @@
 <h4>All listings</h4>
 		<% @listings.each do |l| %>
-			ID: <%= l.id %><br>
-			Max # of guests: <%= l.no_of_guests %><br><br>
+			<ul>
+				<li>ID: <%= l.id %></li>
+				<li>Max # of guests: <%= l.no_of_guests %></li>
+				<li>Lister's Name: <%= l.user.name %></li>
+				<li>Description: <%= l.description %></li>
+				<li>Property Type: <% l.property_type %></li>
+				<li>Room Type: <%= l.room_type %></li>
+				<li>City: <%= l.city %></li>
+				<li>State: <%= l.state %></li>
+				<li>Country: <%= l.country %></li>
+				<li>Rent per night: <% l.rent_per_night %></li>
+				<li>House Rules: <% l.house_rules %></li>
+			</ul>
+
+
+	<% if l.id != current_user.id %>
+	<%= link_to t(".reserve this listing"), new_reservation_path %><br>
+	<% end %>
 		<%end%>
 
 <% unless @listings.empty? %>
