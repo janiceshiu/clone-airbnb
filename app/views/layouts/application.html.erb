@@ -9,7 +9,8 @@
 </head>
 <body>
 	<%= render 'layouts/header' %>
-  <div id="header">
+	<div class="container">
+		<div class="signed_in">
     <% if signed_in? -%>
     	Welcome. You are signed in as <%= current_user.name %>.
     	<%= link_to t(".profile"), user_path(current_user.id) %>
@@ -20,7 +21,7 @@
       <%= link_to t(".sign_in"), sign_in_path %>
       <%= link_to t(".sign_up"), sign_up_path %>
     <% end -%>
-  </div>
+    <div>
 
   <div id="flash">
     <% flash.each do |key, value| -%>
@@ -31,6 +32,7 @@
   <%= yield %>
 
   <%= render 'layouts/footer' %>
+</div>
   <%= debug(params) if Rails.env.development? %>
 </body>
 </html>
