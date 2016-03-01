@@ -7,7 +7,6 @@ class User < ActiveRecord::Base
 
   validates_presence_of :password, unless: :signup_with_facebook?, on: :create
   validates_presence_of :encrypted_password, unless: :signup_with_facebook?
-  validates_uniqueness_of :password, unless: :signup_with_facebook?, on: :create
   validates_confirmation_of :password, unless: :signup_with_facebook?, on: :create
 
   # attr_accessible :avatar # needed?

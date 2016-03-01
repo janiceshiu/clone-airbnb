@@ -38,6 +38,8 @@ gem 'fog-aws'
 # Use will_paginate for pagination
 gem 'will_paginate', '~> 3.0.6'
 
+# For asynchronous mailing
+gem 'sidekiq'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -48,7 +50,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 end
-
+gem "letter_opener", :group => :development
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
