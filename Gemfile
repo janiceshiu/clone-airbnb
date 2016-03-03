@@ -35,6 +35,9 @@ gem 'fog'
 # Use fog to upload images to AWS S3
 gem 'fog-aws'
 
+gem 'braintree'
+gem 'gon'
+
 # Use will_paginate for pagination
 gem 'will_paginate', '~> 3.0.6'
 

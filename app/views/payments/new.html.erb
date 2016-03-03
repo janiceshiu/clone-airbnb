@@ -1,0 +1,13 @@
+<p>Number of nights: <%= @no_of_nights %><p>
+<p>Rent per night: <%= 40 %></p>
+<p>Total payment: <%= @total_payment %></p>
+
+
+<div class="form-container radius-box glassy-bg small-10 small-centered medium-8 large-6 columns">
+  <h2 class="mbs">New Transaction</h2>
+  <%= form_tag reservation_payments_path do %>
+    <p>Please enter your payment details:</p>
+    <div id="dropin"></div>
+    <%= submit_tag "Pay #{@total_payment}", class: "button mt1" %>
+  <%end%>
+</div>

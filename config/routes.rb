@@ -25,8 +25,11 @@ Rails.application.routes.draw do
   # Listings
   resources :listings, except: [:destroy]
 
-  # Reservations
-  resources :reservations
+  # Reservations and payments
+  resources :reservations do
+  	resources :payments, only: [:new, :create]
+  end
+
 
   # Omniauth + Users
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"

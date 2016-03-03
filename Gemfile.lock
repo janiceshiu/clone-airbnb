@@ -57,6 +57,8 @@ GEM
     bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
+    braintree (2.58.0)
+      builder (>= 2.0.0)
     builder (3.2.2)
     byebug (8.2.2)
     clearance (1.12.1)
@@ -196,6 +198,11 @@ GEM
     formatador (0.2.5)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    gon (6.0.1)
+      actionpack (>= 3.0)
+      json
+      multi_json
+      request_store (>= 1.0)
     hashie (3.4.3)
     i18n (0.7.0)
     inflecto (0.0.2)
@@ -276,6 +283,7 @@ GEM
     rdoc (4.2.2)
       json (~> 1.4)
     redis (3.2.2)
+    request_store (1.3.0)
     sass (3.4.21)
     sass-rails (5.0.4)
       railties (>= 4.0.0, < 5.0)
@@ -322,6 +330,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-sass
+  braintree
   byebug
   carrierwave!
   clearance
@@ -329,6 +338,7 @@ DEPENDENCIES
   figaro
   fog
   fog-aws
+  gon
   jbuilder (~> 2.0)
   jquery-rails
   letter_opener

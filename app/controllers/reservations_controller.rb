@@ -9,12 +9,15 @@ class ReservationsController < ApplicationController
   end
 
   def create
-		new_reservation = Reservation.new(reservation_params)
-		new_reservation.user_id = current_user.id
-		# if new_reservation.user_id == current_user.id # this is to prevent a lot of reservations being created during testing.
-		if new_reservation.save # commenting out to prevent a lot of reservations being created during testing.
-			ReservationMailer.confirm_reservation(new_reservation).deliver_later
-			redirect_to user_path(current_user.id)
+  	test_reservation = Reservation.find(2) # use this reservation for testing purposes.
+		# new_reservation = Reservation.new(reservation_params)
+		# new_reservation.user_id = current_user.id
+		if test_reservation.id == 2 # this is to prevent a lot of reservations being created during testing.
+		# if new_reservation.save # commenting out to prevent a lot of reservations being created during testing.
+			redirect_to new_reservation_payment_path(test_reservation.id)
+			# ReservationMailer.confirm_reservation(new_reservation).deliver_later		 # commenting out to prevent a lot of emails being sent during testing
+			# redirect_to new_payment_path
+			# redirect_to user_path(current_user.id)
 		else
 			redirect_to new_reservation_path
 		end
