@@ -3,7 +3,8 @@ class ListingsController < ApplicationController
 	def index
     if params[:query].present?
     	# @listings = Listing.search(params[:query] || "*")
-      @listings = Listing.search(params[:query], page: params[:page], per_page: 2)
+    	@listings = Listing.search(params[:query], where: {user_id: {not: current_user.id}}, page: params[:page], per_page: 2)
+
       @query = params[:query]
       # @products = Product.search "milk", page: params[:page], per_page: 20
     else
