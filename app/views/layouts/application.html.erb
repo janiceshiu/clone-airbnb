@@ -4,28 +4,43 @@
 	<title><%= yield(:title) %> | AirBnB clone</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<%= include_gon %>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
+  <style>
+	  input {
+	  width: 30rem;
+	  padding: 1rem;
+	  margin: 1rem;
+	}
+	img {
+	  width: 3rem;
+	  height: 3rem;
+	}
+
+	.tt-dropdown-menu {
+	  background-color: lightgray;
+	}
+
+	.tt-is-under-cursor {
+	  color: blue;
+	}
+  </style>
+
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/hogan.js/2.0.0/hogan.min.js"></script>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
   <%= csrf_meta_tags %>
    <script src="https://js.braintreegateway.com/v2/braintree.js"></script>
+
   <%= render 'layouts/shim' %>
 </head>
 
 <body>
-	<%= render 'layouts/navbar' %>
+  <section id="votingContest">
+    <input id="nominated" type="text" placeholder="Type your nominated colleague (3 pending)"/>
+    <div id="selected">
+    </div>
+  </section>
 
-	<div class="container">
-  	<div id="flash">
-    	<% flash.each do |key, value| -%>
-      	<div id="flash_<%= key %>"><%=h value %></div>
-    	<% end %>
-  	</div>
 
-  <%= yield %>
-
-  <%= render 'layouts/footer' %>
-
-	</div>
-  <%= debug(params) if Rails.env.development? %>
 </body>
 </html>
+

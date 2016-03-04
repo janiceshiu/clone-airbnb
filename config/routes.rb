@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
+  # Typeahead TEST
+  # get 'typeahead/:query' => 'listings#typeahead'
+
   # Static Pages
   root 'static_pages#home'
   get 'help' => 'static_pages#help'
@@ -23,7 +26,11 @@ Rails.application.routes.draw do
   get "/sign_up" => "clearance/users#new", as: "sign_up"
 
   # Listings
-  resources :listings, except: [:destroy]
+  resources :listings, except: [:destroy] do
+  	collection do
+    	get :autocomplete
+  	end
+  end
 
   # Reservations and payments
   resources :reservations do

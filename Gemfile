@@ -38,6 +38,7 @@ gem 'fog-aws'
 gem 'braintree'
 gem 'gon'
 
+gem 'bootstrap-multiselect-rails'
 # Use elasticsearch and searchkick for search
 gem 'searchkick'
 # Use will_paginate for pagination
@@ -47,7 +48,7 @@ gem 'will_paginate', '~> 3.0.6'
 gem 'sidekiq'
 # Use Unicorn as the app server
 # gem 'unicorn'
-
+gem 'twitter-typeahead-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

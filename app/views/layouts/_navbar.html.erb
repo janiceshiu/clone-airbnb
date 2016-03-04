@@ -1,3 +1,6 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.0/bootstrap3-typeahead.min.js"></script>
+
+
 <nav class="navbar navbar-inverse">
 	<div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
@@ -19,9 +22,11 @@
 					<li><%= link_to '<i class="glyphicon glyphicon-picture"></i> Create New Listing'.html_safe, new_listing_path %></li>
 					<li>
 						<%= form_tag listings_path, method: :get do %>
-						  <%= text_field_tag "query", params[:query] %>
+						  <%= text_field_tag :query, nil, class: 'form-control typeahead', data: {provide: "typeahead" } %>
 						  <%= submit_tag "Search" %>
 						<% end %>
+
+
 					</li>
 					<!-- <li><form class="navbar-form navbar-left" role="search"><div class="form-group"><input type="text" class="form-control" placeholder="Search not working"></div><button type="submit" class="btn btn-default">Submit</button></form></li> -->
 				<% else %>
