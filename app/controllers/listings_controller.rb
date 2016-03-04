@@ -1,10 +1,19 @@
 class ListingsController < ApplicationController
 
 	def index
-		# @listings = Listing.all
-		# @listings = Listing.all.sort
-		@listings = Listing.all.paginate(:page => params[:page], per_page: 3).order('created_at ASC')
+    if params[:query].present?
+    	# @listings = Listing.search(params[:query] || "*")
+      @listings = Listing.search(params[:query], page: params[:page], per_page: 2)
+      @query = params[:query]
+      # @products = Product.search "milk", page: params[:page], per_page: 20
+    else
+      @listings = Listing.all.page params[:page]
+    end
 	end
+
+  def autocomplete
+    render json: Book.search(params[:query], autocomplete: true, limit: 10).map(&:country)
+  end
 
 	def new
 	end
@@ -20,7 +29,7 @@ class ListingsController < ApplicationController
 	end
 
 	def show
-		@listing = Listing.find(params[:id])
+		@l = Listing.find(params[:id])
 	end
 
 	def edit

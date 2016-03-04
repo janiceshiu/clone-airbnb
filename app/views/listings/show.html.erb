@@ -1,19 +1,60 @@
-<li>
-	<ul>Lister's Name: <%= @listing.user.name %></ul>
-	<ul>Description: <%= @listing.description %></ul>
-	<ul>Property Type: <% @listing.property_type %></ul>
-	<ul>Room Type: <%= @listing.room_type %></ul>
-	<ul>City: <%= @listing.city %></ul>
-	<ul>State: <%= @listing.state %></ul>
-	<ul>Country: <%= @listing.country %></ul>
-	<ul>Rent per night: <% @listing.rent_per_night %></ul>
-	<ul>House Rules: <% @listing.house_rules %></ul>
+<div class="container">
+  <table class='table table-bordered'>
+    <tbody>
+      <tr>
+        <td rowspan='2'>User Image, <br><%=@l.user.name%></td>
+        <td>Listing Title</td>
+      </tr>
+      <tr>
+        <td><%= "#{@l.city}, #{@l.state}, #{@l.country}"%></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-	<% @listing.images.each do |i| %>
+<div class="container">
+  <h4>About This Listing</h4>
+  <p><%= @l.description %></p>
+  <table class='table table-bordered'>
+    <tbody>
+      <tr>
+        <td rowspan='4'>The Space</td>
+        <td>Accommodates: <%= @l.no_of_guests %></td>
+        <td>Check In: 1pm (hardcoded)</td>
+      </tr>
+      <tr>
+        <td>Bathrooms: <%= @l.no_of_bathrooms %></td>
+        <td>Check Out: 10am (hardcoded)</td>
+      </tr>
+      <tr>
+        <td>Bedrooms: <%= @l.no_of_bedrooms %></td>
+        <td>Property Type: <%= @l.property_type %></td>
+      </tr>
+      <tr>
+        <td>Beds: <%= @l.no_of_beds %></td>
+        <td>Room Type: <%= @l.room_type %></td>
+      </tr>
+      <tr>
+        <td>Prices</td>
+        <td colspan='2'>$<%= @l.rent_per_night %> per night</td>
+      </tr>
+      <tr>
+        <td>House Rules</td>
+        <td colspan='2'><%= @l.house_rules %></td>
+      </tr>
+      <tr>
+        <td>Availability</td>
+        <td colspan='2'>TBA</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+	<% @l.images.each do |i| %>
 		<%= image_tag i.url %>
 	<% end %>
 
-	<% if @listing.user.id != current_user.id %>
+	<% if @l.user.id != current_user.id %>
 	<%= link_to t(".reserve this listing"), new_reservation_path %>
 	<% end %>
 </li>
