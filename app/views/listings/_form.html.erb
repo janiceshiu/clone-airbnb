@@ -1,0 +1,45 @@
+<%= form_for :listing, url: listings_path do |f| %>
+
+  <%= f.label :rent_per_night %>:$
+  <%= f.number_field :rent_per_night %><br>
+
+  <%= f.label :no_of_guests %>:
+  <%= select(:listing, :no_of_guests, (1..10), :selected => 1) %><br>
+
+  <%= f.label :street_address %>:
+  <%= f.text_field :street_address %><br>
+
+  <%= f.label :city %>:
+  <%= f.text_field :city %><br>
+
+  <%= f.label :state %>:
+  <%= f.text_field :state %><br>
+
+  <%= f.label :country %>:
+  <%= f.text_field :country %><br>
+
+  <%= f.label :room_type %>:
+  <%= f.radio_button :room_type, 'Entire House' %>
+  <%= f.label 'Entire House' %>
+  <%= f.radio_button :room_type, 'Private Room' %>
+  <%= f.label 'Private Room' %>
+  <%= f.radio_button :room_type, 'Shared Room' %>
+  <%= f.label 'Shared Room' %><br>
+
+  <%= f.label :description %>:
+  <%= f.text_area :description, rows: 3, placeholder: "Describe your place." %><br>
+
+  <%= f.label :house_rules %>:
+  <%= f.text_area :house_rules, rows: 3, placeholder: "Describe any house rules you would like your guest to follow." %><br>
+
+<span class="glyphicon glyphicon-check"></span><%= f.submit type: 'submit'%><br>
+
+<%= button_tag(type: "submit", class: "btn") do %>
+  <span class="glyphicon glyphicon-plus"></span> Private
+<% end %>
+  </span>
+</div>
+
+
+
+<% end %>
