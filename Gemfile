@@ -38,6 +38,8 @@ gem 'fog-aws'
 gem 'braintree'
 gem 'gon'
 
+# Use elasticsearch and searchkick for search
+gem 'searchkick'
 # Use will_paginate for pagination
 gem 'will_paginate', '~> 3.0.6'
 

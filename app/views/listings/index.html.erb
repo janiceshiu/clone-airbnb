@@ -1,8 +1,12 @@
-<h4>All listings</h4>
+<% if @query %>
+	<h4>You searched for <%= @query %>. Showing you <%= @listings.length %> listings that match your query.</h4>
+<% else %>
+	<h4>Showing you all listings</h4>
+<% end %>
 		<% @listings.each do |l| %>
 			<ul>
 				<li>ID: <%= l.id %></li>
-				<li>Max # of guests: <%= l.no_of_guests %></li>
+				<li>Max number of guests: <%= l.no_of_guests %></li>
 				<li>Lister's Name: <%= l.user.name %></li>
 				<li>Description: <%= l.description %></li>
 				<li>Property Type: <% l.property_type %></li>
