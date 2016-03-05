@@ -4,10 +4,11 @@ User Avatar: <%= image_tag @user.avatar_url(:thumb) %>
 
 <% if @user.id == current_user.id %>
 	<h4> My Listings </h4>
-	<p>You have <%= current_user.listings.length %> listings.</p>
+	<p>You have <%= current_user.listings.where(published: true).length %> published listings and <%= current_user.listings.where(published: false).length %> unpublished listings.</p>
 	<p><%= link_to "View your listings", listings_path %></p>
 
-	<% @user.listings.each do |l| %>
+Published Listings
+	<% @user.listings.where(published: true).each do |l| %>
 		<li>
 			<ul><%= link_to "View Listing #{l.id}", listing_path(l.id) %></ul>
 			<ul>Rent per night: <%= l.rent_per_night %></ul>
@@ -22,6 +23,25 @@ User Avatar: <%= image_tag @user.avatar_url(:thumb) %>
 			<br><br>
 		</li>
 	<% end %>
+
+Unpublished Listings
+	<% @user.listings.where(published: false).each do |l| %>
+		<li>
+			<ul><%= link_to "View Listing #{l.id}", listing_path(l.id) %></ul>
+			<ul>Rent per night: <%= l.rent_per_night %></ul>
+			<ul>Property Type: <%= l.property_type %></ul>
+			<ul>City: <%= l.city %></ul>
+			<ul>State: <%= l.state %></ul>
+			<ul>Country: <%= l.country %></ul>
+			<ul>Max number of guests: <%= l.no_of_guests %></ul>
+			<ul>Description: <%= l.description %></ul>
+			<ul>House Rules: <%= l.house_rules %></ul>
+			<ul><%= link_to "Edit Listing", edit_listing_path(l.id) %> --- <%= link_to "Delete Listing", root_path %></ul>
+			<br><br>
+		</li>
+	<% end %>
+
+<!-- TBD: should not be able to see another user's unpublished listings -->
 
 
 	<h4>My Reservations</h4>

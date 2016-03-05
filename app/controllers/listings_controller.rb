@@ -20,11 +20,14 @@ class ListingsController < ApplicationController
 	end
 
 	def create
-		new_listing = Listing.new(listing_params)
-		new_listing.user_id = current_user.id
-		if new_listing.save
-			redirect_to user_path(current_user.id)
+		@new_listing = Listing.new(listing_params)
+		@new_listing.user_id = current_user.id
+		if @new_listing.save
+			# flash message: "Congratulations, you've created a listing. Before other people can rent your place, please supply more details about your listing "
+			redirect_to edit_listing_path(@new_listing.id)
 		else
+			# Error messages not showing.
+			# flash.now[:error] = @new_listing.errors.full_messages
 			redirect_to new_listing_path
 		end
 	end
@@ -41,7 +44,7 @@ class ListingsController < ApplicationController
 		listing = Listing.find(params[:id])
   	listing.update(listing_params)
   	redirect_to listing_path
-		# WIP
+		# WIP - listing.published == true when listing fully filled out.
 	end
 
 	def destroy
@@ -51,7 +54,7 @@ class ListingsController < ApplicationController
   private
   def listing_params
     params.require(:listing).permit(:user_id, :rent_per_night, :no_of_guests, :street_address, :city,
-    	:state, :country, :room_type, :description, :house_rules, {images: []})
+    	:state, :country, :room_type, :property_type, :description, :house_rules, {images: []})
   end
 
 end
