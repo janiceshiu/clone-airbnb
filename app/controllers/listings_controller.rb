@@ -36,6 +36,7 @@ class ListingsController < ApplicationController
 
 	def update
 		listing = Listing.find(params[:id])
+		# byebug
   	listing.update!(listing_params)
   	redirect_to listing_path
 		# WIP - listing.published == true when listing fully filled out.
@@ -50,8 +51,8 @@ class ListingsController < ApplicationController
 
   private
   def listing_params
-    params.require(:listing).permit(:user_id, :rent_per_night, :no_of_guests, :street_address, :city,
-    	:state, :country, :room_type, :property_type, :description, :house_rules, {images: []}, :published, :title)
+    params.require(:listing).permit(:user_id, :rent_per_night, :no_of_guests, :house_number, :street_address, :city, :postcode,
+    	:state, :country, :room_type, :property_type, :description, :house_rules, {images: []}, :published, :title, :lat, :lng)
   end
 
 end

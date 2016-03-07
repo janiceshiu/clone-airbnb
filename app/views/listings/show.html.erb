@@ -1,4 +1,8 @@
 <div class="container">
+	Since you are the owner of this listing, you can see the listing's full address.
+	<% if @l.user.id == current_user.id %>
+   Address: <%= "#{@l.house_number} #{@l.street_address}, #{@l.city}, #{@l.state}, #{@l.postcode} #{@l.country} "%>
+  <% end %>
 
   <div class="panel panel-default">
     <div class="panel-body">
@@ -58,6 +62,7 @@
   </div>
 
 
+	<!-- TBA: carousel for images -->
   <% @l.images.each do |i| %>
     <%= image_tag i.url %>
   <% end %>
@@ -66,14 +71,15 @@
   <%= link_to t(".reserve this listing"), new_reservation_path %>
   <% end %>
 
-<!-- google maps WIP -->
+	<!-- google maps. refactor out JS later. -->
   <div id='map'>
     <script>
      function initMap() {
   		var myLatLng = {lat: -25.363 , lng: 131.044}; // hard-coded
-// TBA: var myLatLng = {lat: l.lat , lng: l.lng}; (once the property has a lat and long)
+			var myLatLng = {lat: <%=@l.lat%> , lng: <%=@l.lng%>};
+
   		var map = new google.maps.Map(document.getElementById('map'), {
-    	zoom: 4,
+    	zoom: 13,
     	center: myLatLng
   		});
 
@@ -89,5 +95,4 @@
         async defer></script>
 
   </div>
-<!-- TBA: carousel for images -->
 </div>

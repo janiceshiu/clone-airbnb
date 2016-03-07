@@ -1,5 +1,3 @@
-// trying to customise this. does not work yet.
-
 // This example displays an address form, using the autocomplete feature
 // of the Google Places API to help users fill in the information.
 
@@ -9,12 +7,12 @@
 
 var placeSearch, autocomplete;
 var componentForm = {
-  astreet_number: 'short_name', // formerly street_number
-  route: 'long_name', // formerly route
-  listing_city: 'long_name', // formerly locality (refers to city)
-  listing_state: 'short_name', // formerly administrative_area_level_1 (refers to state)
-  listing_country: 'long_name', // formerly country (refers to country)
-  listing_postcode: 'short_name' // formerly postal_code
+  street_number: 'short_name',
+  route: 'long_name',
+  locality: 'long_name',
+  administrative_area_level_1: 'short_name',
+  country: 'long_name',
+  postal_code: 'short_name'
 };
 
 function initAutocomplete() {
@@ -34,10 +32,8 @@ function fillInAddress() {
   var place = autocomplete.getPlace();
 
   for (var component in componentForm) {
-    // document.getElementById(component).value = '';
-    document.getElementsByName(component)[0].value = '';
-    // document.getElementById(component).disabled = false;
-    document.getElementsByName(component)[0].disabled = false;
+    document.getElementById(component).value = '';
+    document.getElementById(component).disabled = false;
   }
 
   // Get each component of the address from the place details
@@ -46,10 +42,14 @@ function fillInAddress() {
     var addressType = place.address_components[i].types[0];
     if (componentForm[addressType]) {
       var val = place.address_components[i][componentForm[addressType]];
-      // document.getElementById(addressType).value = val;
-      document.getElementsByName(addressType)[0].value = val;
+      document.getElementById(addressType).value = val;
     }
   }
+// debugger
+  document.getElementById('lat').value = place.geometry.location.lat();
+  document.getElementById('lng').value = place.geometry.location.lng();
+  // document.getElementById(PlaceLatLng).value = place.geometry.location.lat()
+  // test
 }
 
 // Bias the autocomplete object to the user's geographical location,
