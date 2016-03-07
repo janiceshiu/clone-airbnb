@@ -13,7 +13,7 @@ class ListingsController < ApplicationController
 	end
 
   def autocomplete
-    render json: Book.search(params[:query], autocomplete: true, limit: 10).map(&:country)
+    render json: Listing.search(params[:query], limit: 10).map(&:country)
   end
 
 	def new

@@ -19,7 +19,7 @@
 					<li><%= link_to '<i class="glyphicon glyphicon-picture"></i> Create New Listing'.html_safe, new_listing_path %></li>
 					<li>
 						<%= form_tag listings_path, method: :get do %>
-						  <%= text_field_tag "query", params[:query] %>
+						  <%= text_field_tag "query", params[:query], autocomplete: "off" %>
 						  <%= submit_tag "Search" %>
 						<% end %>
 					</li>
