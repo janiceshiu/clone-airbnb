@@ -21,7 +21,7 @@
 					<li><%= link_to '<i class="glyphicon glyphicon-pushpin"></i> Your Reservations'.html_safe, reservations_path %></li>
 					<li>
 						<%= form_tag searches_path, method: :get do %>
-						  <%= text_field_tag "query", params[:query] %>
+						  <%= text_field_tag "query", params[:query], autocomplete: "off" %>
 						  <%= submit_tag "Search" %>
 						<% end %>
 					</li>

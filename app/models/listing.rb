@@ -8,7 +8,9 @@ class Listing < ActiveRecord::Base
 	belongs_to :user
 	has_many :reservations
 	mount_uploaders :images, ImageUploader
-	searchkick  # autocomplete: ['country'] - this isn't working.
+
+	# Must do this for other fields too. (eg: city, state, etc)
+	searchkick match: :word_start, searchable: [:country], autocomplete: [:country]
 
 	# Validations for publishing listing.
 	with_options if: :valid_to_publish? do |listing|
