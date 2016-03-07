@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'searches/index'
+
+  # TEST
+get 'test' => 'listings#test'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -35,6 +39,7 @@ Rails.application.routes.draw do
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
   resources :users, only: [:show, :edit, :update, :destroy]
 
-
+  # Search
+  resources :searches, only: [:index]
 
 end

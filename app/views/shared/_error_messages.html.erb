@@ -1,0 +1,14 @@
+<!-- < % byebug %> -->
+
+<% if @listing.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-error">
+      The form contains <%= pluralize(@listing.errors.count, "error") %>.
+    </div>
+    <ul>
+    <% @listing.errors.full_messages.each do |msg| %>
+      <li>* <%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>

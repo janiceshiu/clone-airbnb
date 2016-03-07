@@ -1,4 +1,37 @@
+<h4>After you've created a new listing, you can make money by renting out your place</h4>
 <br>
-<h4>Use this form to create a new listing.</h4>
 
- <%= render partial: '/listings/form'%>
+<div class="container">
+<%= form_for :listing, url: listings_path do |f| %>
+   <!-- < %= render 'shared/error_messages' %> -->
+
+  <%= f.label :property_type %><br>
+  <%= f.radio_button :property_type, 'Apartment' %>
+  <%= f.label 'Apartment' %>
+  <%= f.radio_button :property_type, 'House' %>
+  <%= f.label 'House' %>
+  <%= f.radio_button :property_type, 'Bed & Breakfast' %>
+  <%= f.label 'Bed & Breakfast' %><br><br>
+
+  <%= f.label :room_type %><br>
+  <%= f.radio_button :room_type, 'Entire House' %>
+  <%= f.label 'Entire House' %>
+  <%= f.radio_button :room_type, 'Private Room' %>
+  <%= f.label 'Private Room' %>
+  <%= f.radio_button :room_type, 'Shared Room' %>
+  <%= f.label 'Shared Room' %><br><br>
+
+  <%= f.label :accommodates %><br>
+  <%= select(:listing, :no_of_guests, (1..10), :selected => 1) %><br><br>
+
+  <%= f.label :city %><br>
+  <%= f.text_field :city %><br><br>
+
+
+	<%= button_tag(type: "submit", class: "btn") do %>
+	  <span class="glyphicon glyphicon-check"></span> Continue
+	<% end %>
+<% end %>
+
+</div>
+

@@ -1,15 +1,8 @@
 class ListingsController < ApplicationController
+	before_action :require_login, only: [:index]
 
 	def index
-    if params[:query].present?
-    	# @listings = Listing.search(params[:query] || "*")
-    	@listings = Listing.search(params[:query], where: {user_id: {not: current_user.id}}, page: params[:page], per_page: 2)
-
-      @query = params[:query]
-      # @products = Product.search "milk", page: params[:page], per_page: 20
-    else
-      @listings = Listing.all.page params[:page]
-    end
+    @listings = Listing.where(user_id: current_user.id)
 	end
 
   def autocomplete
@@ -17,15 +10,19 @@ class ListingsController < ApplicationController
   end
 
 	def new
+		@listing = Listing.new
 	end
 
 	def create
-		new_listing = Listing.new(listing_params)
-		new_listing.user_id = current_user.id
-		if new_listing.save
-			redirect_to user_path(current_user.id)
+		@listing = Listing.new(listing_params)
+		@listing.user_id = current_user.id
+		if @listing.save
+			# flash message: "Congratulations, you've created a listing."
+			redirect_to edit_listing_path(@listing.id)
 		else
-			redirect_to new_listing_path
+			# Error messages not showing.
+			@errors = @listing.errors.full_messages
+			render 'new'
 		end
 	end
 
@@ -39,19 +36,23 @@ class ListingsController < ApplicationController
 
 	def update
 		listing = Listing.find(params[:id])
-  	listing.update(listing_params)
+		# byebug
+  	listing.update!(listing_params)
   	redirect_to listing_path
-		# WIP
+		# WIP - listing.published == true when listing fully filled out.
 	end
 
 	def destroy
 		# WIP
 	end
 
+	def test
+	end
+
   private
   def listing_params
-    params.require(:listing).permit(:user_id, :rent_per_night, :no_of_guests, :street_address, :city,
-    	:state, :country, :room_type, :description, :house_rules, {images: []})
+    params.require(:listing).permit(:user_id, :rent_per_night, :no_of_guests, :house_number, :street_address, :city, :postcode,
+    	:state, :country, :room_type, :property_type, :description, :house_rules, {images: []}, :published, :title, :lat, :lng)
   end
 
 end

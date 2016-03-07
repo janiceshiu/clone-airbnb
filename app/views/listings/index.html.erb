@@ -1,28 +1,41 @@
-<% if @query %>
-	<h4>You searched for <%= @query %>. Showing you <%= @listings.length %> listings that match your query.</h4>
-<% else %>
-	<h4>Showing you all listings</h4>
-<% end %>
-		<% @listings.each do |l| %>
-			<ul>
-				<li>ID: <%= l.id %></li>
-				<li>Max number of guests: <%= l.no_of_guests %></li>
-				<li>Lister's Name: <%= l.user.name %></li>
-				<li>Description: <%= l.description %></li>
-				<li>Property Type: <% l.property_type %></li>
-				<li>Room Type: <%= l.room_type %></li>
-				<li>City: <%= l.city %></li>
-				<li>State: <%= l.state %></li>
-				<li>Country: <%= l.country %></li>
-				<li>Rent per night: <% l.rent_per_night %></li>
-				<li>House Rules: <% l.house_rules %></li>
-			</ul>
+<div class='container'>
+	<h4> My Listings </h4>
+	<p>You have <%= current_user.listings.where(published: true).length %> published listings and <%= current_user.listings.where(published: false).length %> unpublished listings.</p>
 
-			<% if l.user.id != current_user.id %>
-				<%= link_to t(".reserve this listing"), :controller => "reservations", :action => "new", :listing_id => l.id  %><br>
-			<% end %>
-				<%end%>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Published Listings</h3>
+  </div>
+  <div class="panel-body">
+    	<% current_user.listings.where(published: true).sort.each do |l| %>
+		<li>
+			<ul><%= link_to "View Listing #{l.id}", listing_path(l.id) %></ul>
+			<ul><%= "#{l.city}, #{l.state}, #{l.country}" %></ul>
+			<ul>Last Updated: <%= l.updated_at.strftime("%d %b %Y") %></ul>
+			<ul><%= link_to '<i class="glyphicon glyphicon-pencil"></i> Edit Listing'.html_safe, edit_listing_path(l.id) %> --- <%= link_to '<i class="glyphicon glyphicon-trash"></i> Delete Listing (inactive)'.html_safe, root_path %></ul>
+			<br><br>
+		</li>
+	<% end %>
 
-<% unless @listings.empty? %>
-	<%= will_paginate @listings %>
-<% end %>
+  </div>
+</div>
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">In-Progress Listings</h3>
+  </div>
+  <div class="panel-body">
+    	<% current_user.listings.where(published: false).sort.each do |l| %>
+		<li>
+			<ul><%= link_to "View Listing #{l.id}", listing_path(l.id) %></ul>
+			<ul><%= "#{l.city}, #{l.state}, #{l.country}" %></ul>
+			<ul>Last Updated: <%= l.updated_at.strftime("%d %b %Y") %></ul>
+			<ul><%= link_to '<i class="glyphicon glyphicon-pencil"></i> Edit Listing'.html_safe, edit_listing_path(l.id) %> --- <%= link_to '<i class="glyphicon glyphicon-trash"></i> Delete Listing (inactive)'.html_safe, root_path %></ul>
+			<br><br>
+		</li>
+	<% end %>
+
+  </div>
+</div>

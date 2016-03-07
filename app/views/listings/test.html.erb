@@ -1,0 +1,37 @@
+
+    <div id="locationField">
+      <input id="autocomplete" placeholder="Enter your address"
+             onFocus="geolocate()" type="text"></input>
+    </div>
+
+    <table id="address">
+      <tr>
+        <td>Street address</td>
+        <td><input class="field" id="street_number"
+              disabled="true"></input></td>
+        <td class="wideField" colspan="2"><input class="field" id="route"
+              disabled="true"></input></td>
+      </tr>
+      <tr>
+        <td>City</td>
+        <td><input class="field" id="locality"
+              disabled="true"></input></td>
+      </tr>
+      <tr>
+        <td>State</td>
+        <td><input class="field"
+              id="administrative_area_level_1" disabled="true"></input></td>
+        <td>Zip code</td>
+        <td><input class="field" id="postal_code"
+              disabled="true"></input></td>
+      </tr>
+      <tr>
+        <td>Country</td>
+        <td><input class="field"
+              id="country" disabled="true"></input></td>
+      </tr>
+    </table>
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initAutocomplete"
+        async defer></script>
