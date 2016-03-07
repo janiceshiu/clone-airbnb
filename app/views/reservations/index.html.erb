@@ -6,7 +6,7 @@
 			<ul>Check-Out Date: <%= r.check_out_date %></ul>
 			<ul>Check-In Date: <%= r.check_in_date %></ul>
 			<ul>Your number of guests: <%= r.no_of_guests %></ul>
-			<ul><%= link_to "Edit Reservation", edit_reservation_path(r.id) %> --- <%= link_to "Delete Reservation", root_path %></ul>
+			<ul><%= link_to '<i class="glyphicon glyphicon-pencil"></i> Edit Reservation (inactive)'.html_safe, root_path %> --- <%= link_to '<i class="glyphicon glyphicon-trash"></i> Delete Reservation (inactive)'.html_safe, root_path %></ul>
 			<br><br>
 		</li>
 	<% end %>

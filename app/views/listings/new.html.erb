@@ -1,8 +1,9 @@
 <h4>After you've created a new listing, you can make money by renting out your place</h4>
 <br>
 
+<div class="container">
 <%= form_for :listing, url: listings_path do |f| %>
-
+   <!-- < %= render 'shared/error_messages' %> -->
 
   <%= f.label :property_type %><br>
   <%= f.radio_button :property_type, 'Apartment' %>
@@ -31,4 +32,6 @@
 	  <span class="glyphicon glyphicon-check"></span> Continue
 	<% end %>
 <% end %>
+
+</div>
 

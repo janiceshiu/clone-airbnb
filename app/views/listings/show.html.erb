@@ -1,60 +1,93 @@
 <div class="container">
-  <table class='table table-bordered'>
-    <tbody>
-      <tr>
-        <td rowspan='2'>User Image, <br><%=@l.user.name%></td>
-        <td>Listing Title</td>
-      </tr>
-      <tr>
-        <td><%= "#{@l.city}, #{@l.state}, #{@l.country}"%></td>
-      </tr>
-    </tbody>
-  </table>
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+    <table class='table table-borderless'>
+      <tbody>
+        <tr>
+          <td rowspan='2'><%= image_tag @l.user.avatar_url(:thumb) %> <br><%=@l.user.name%></td>
+          <td><%= @l.title %></td>
+        </tr>
+        <tr>
+          <td><%= "#{@l.city}, #{@l.state}, #{@l.country}"%></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">About This Listing</h3>
+    </div>
+    <div class="panel-body">
+      <table class='table table-borderless'>
+      <tbody>
+        <tr>
+          <td rowspan='4'>The Space</td>
+          <td>Accommodates: <%= @l.no_of_guests %></td>
+          <td>Check In: 1pm (hardcoded)</td>
+        </tr>
+        <tr>
+          <td>Bathrooms: <%= @l.no_of_bathrooms %></td>
+          <td>Check Out: 10am (hardcoded)</td>
+        </tr>
+        <tr>
+          <td>Bedrooms: <%= @l.no_of_bedrooms %></td>
+          <td>Property Type: <%= @l.property_type %></td>
+        </tr>
+        <tr>
+          <td>Beds: <%= @l.no_of_beds %></td>
+          <td>Room Type: <%= @l.room_type %></td>
+        </tr>
+        <tr>
+          <td>Prices</td>
+          <td colspan='2'>$<%= @l.rent_per_night %> per night</td>
+        </tr>
+        <tr>
+          <td>House Rules</td>
+          <td colspan='2'><%= @l.house_rules %></td>
+        </tr>
+        <tr>
+          <td>Availability</td>
+          <td colspan='2'>TBA</td>
+        </tr>
+      </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <% @l.images.each do |i| %>
+    <%= image_tag i.url %>
+  <% end %>
+
+  <% if @l.user.id != current_user.id %>
+  <%= link_to t(".reserve this listing"), new_reservation_path %>
+  <% end %>
+
+<!-- google maps WIP -->
+  <div id='map'>
+    <script>
+     function initMap() {
+  		var myLatLng = {lat: -25.363 , lng: 131.044}; // hard-coded
+// TBA: var myLatLng = {lat: l.lat , lng: l.lng}; (once the property has a lat and long)
+  		var map = new google.maps.Map(document.getElementById('map'), {
+    	zoom: 4,
+    	center: myLatLng
+  		});
+
+  		var marker = new google.maps.Marker({
+    	position: myLatLng,
+    	map: map,
+    	title: 'Hello World!'
+  		});
+
+		}
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+        async defer></script>
+
+  </div>
+<!-- TBA: carousel for images -->
 </div>
-
-<div class="container">
-  <h4>About This Listing</h4>
-  <p><%= @l.description %></p>
-  <table class='table table-bordered'>
-    <tbody>
-      <tr>
-        <td rowspan='4'>The Space</td>
-        <td>Accommodates: <%= @l.no_of_guests %></td>
-        <td>Check In: 1pm (hardcoded)</td>
-      </tr>
-      <tr>
-        <td>Bathrooms: <%= @l.no_of_bathrooms %></td>
-        <td>Check Out: 10am (hardcoded)</td>
-      </tr>
-      <tr>
-        <td>Bedrooms: <%= @l.no_of_bedrooms %></td>
-        <td>Property Type: <%= @l.property_type %></td>
-      </tr>
-      <tr>
-        <td>Beds: <%= @l.no_of_beds %></td>
-        <td>Room Type: <%= @l.room_type %></td>
-      </tr>
-      <tr>
-        <td>Prices</td>
-        <td colspan='2'>$<%= @l.rent_per_night %> per night</td>
-      </tr>
-      <tr>
-        <td>House Rules</td>
-        <td colspan='2'><%= @l.house_rules %></td>
-      </tr>
-      <tr>
-        <td>Availability</td>
-        <td colspan='2'>TBA</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-	<% @l.images.each do |i| %>
-		<%= image_tag i.url %>
-	<% end %>
-
-	<% if @l.user.id != current_user.id %>
-	<%= link_to t(".reserve this listing"), new_reservation_path %>
-	<% end %>
-</li>

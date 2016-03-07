@@ -1,0 +1,4 @@
+<% flash.each do |message_type, message| %>
+<!-- < % byebug %> -->
+	<div class="alert alert-<%= message_type %>"><div class="container"><%= message %></div></div>
+<% end %>

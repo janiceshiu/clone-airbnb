@@ -1,5 +1,5 @@
 class Listing < ActiveRecord::Base
-  # Validations
+  # Validations for creating listing.
 	validates :property_type, presence: true
 	validates :room_type, presence: true
 	validates :no_of_guests, presence: true
@@ -10,7 +10,11 @@ class Listing < ActiveRecord::Base
 	mount_uploaders :images, ImageUploader
 	searchkick  # autocomplete: ['country'] - this isn't working.
 
+	# Validations for publishing listing.
+	with_options if: :valid_to_publish? do |listing|
+    listing.validates :description, presence: true
 
+  end
 
 
 	# Need to figure out how this works. So that only 'active' listings are indexed and show up in search results.
@@ -18,4 +22,8 @@ class Listing < ActiveRecord::Base
   #   # only index listings where published == true
   # end
 
+  def valid_to_publish?
+  	published == true
+
+  end
 end

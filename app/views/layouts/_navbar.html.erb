@@ -17,8 +17,10 @@
 				<% if signed_in? %>
 					<li><%= link_to '<i class="glyphicon glyphicon-user"></i> Profile'.html_safe, user_path(current_user.id) %></li>
 					<li><%= link_to '<i class="glyphicon glyphicon-picture"></i> Create New Listing'.html_safe, new_listing_path %></li>
+					<li><%= link_to '<i class="glyphicon glyphicon-folder-open"></i> Manage Listings'.html_safe, listings_path %></li>
+					<li><%= link_to '<i class="glyphicon glyphicon-pushpin"></i> Your Reservations'.html_safe, reservations_path %></li>
 					<li>
-						<%= form_tag listings_path, method: :get do %>
+						<%= form_tag searches_path, method: :get do %>
 						  <%= text_field_tag "query", params[:query] %>
 						  <%= submit_tag "Search" %>
 						<% end %>

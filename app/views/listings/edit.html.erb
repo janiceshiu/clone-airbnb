@@ -1,4 +1,4 @@
-<% provide(:title, "Edit User") %>
+<% provide(:title, "Edit Listing") %>
 <br><br>
 <% if @listing.published == false %>
 Before other people can rent your place, please supply more details about your listing.
@@ -7,25 +7,59 @@ Edit your listing here.
 <% end %>
 
 
+
+TEST FORM FOR ADDRESSES - NOT WORKING YET.
+<%= form_for(@listing) do |f| %>
+
+  <!-- test -->
+        <div id="locationField">
+      <input id="autocomplete" placeholder="Enter your address"
+             onFocus="geolocate()" type="text"></input>
+    </div>
+
+    <table id="address">
+      <tr>
+        <td>Street address</td>
+        <td><input class="field" name="street_number"
+              disabled="false"></input></td>
+        <td class="wideField" colspan="2"><input class="field" name="route"
+              disabled="true"></input></td>
+      </tr>
+      <tr>
+        <td>City</td>
+        <td><input class="field" name="city"
+              disabled="true"></input></td>
+      </tr>
+      <tr>
+        <td>State</td>
+        <td><input class="field"
+              name="listing_state" disabled="true"></input></td>
+        <td>Zip code</td>
+        <td><input class="field" name="listing_postcode"
+              disabled="true"></input></td>
+      </tr>
+      <tr>
+        <td>Country</td>
+        <td><input class="field"
+              name="listing_country" disabled="true"></input></td>
+      </tr>
+    </table>
+
+<% end %>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initAutocomplete"
+        async defer></script>
+
+<!-- this if is just so the original form won't show -->
+<% if 1 > 2 %>
+
 <%= form_for(@listing) do |f| %>
 
   <%= f.label :rent_per_night %>:$
-  <%= f.number_field :rent_per_night %><br>
+  <%= f.number_field :rent_per_night, id:"test" %><br>
+  <!-- < %= f.number_field :rent_per_night, id:"test" %><br> -->
 
   <%= f.label :no_of_guests %>:
   <%= select(:listing, :no_of_guests, (1..10), :selected => 1) %><br>
-
-  <%= f.label :street_address %>:
-  <%= f.text_field :street_address %><br>
-
-  <%= f.label :city %>:
-  <%= f.text_field :city %><br>
-
-  <%= f.label :state %>:
-  <%= f.text_field :state %><br>
-
-  <%= f.label :country %>:
-  <%= f.text_field :country %><br>
 
   <%= f.label :property_type %><br>
   <%= f.radio_button :property_type, 'Apartment' %>
@@ -49,14 +83,32 @@ Edit your listing here.
   <%= f.label :house_rules %>:
   <%= f.text_area :house_rules, rows: 3, placeholder: "Describe any house rules you would like your guest to follow." %><br>
 
-  <% f.label :upload_images_for_your_listing %>
+    <%= f.label :street_address %>:
+  <%= f.text_field :street_address %><br>
+
+  <%= f.label :city %>:
+  <%= f.text_field :city %><br>
+
+  <%= f.label :state %>:
+  <%= f.text_field :state %><br>
+
+  <%= f.label :country %>:
+  <%= f.text_field :country %><br>
+
+  <%= f.label :upload_images_for_your_listing %>
   <%= f.file_field :images, multiple: true %><br>
 
+  <%= f.label :publish_your_listing %>
+  <%= f.check_box :published %><br>
 
-	<%= button_tag(type: "submit", class: "btn") do %>
+  	<%= button_tag(type: "submit", class: "btn") do %>
   	<span class="glyphicon glyphicon-check"></span> Submit
 	<% end %>
 
 <% end %>
+
+<% end %>
+
+
 
 You are editing the listing with the ID <%= @listing.id %>
