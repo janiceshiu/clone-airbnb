@@ -23,7 +23,9 @@ Rails.application.routes.draw do
   get "/sign_up" => "clearance/users#new", as: "sign_up"
 
   # Listings
+  get "/listings/autocomplete", to: "listings#autocomplete", as: "listings_autocomplete"
   resources :listings, except: [:destroy]
+
 
   # Reservations and payments
   resources :reservations do
