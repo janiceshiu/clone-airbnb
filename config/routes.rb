@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   get 'searches/index'
 
+  get '/listings' => 'listings#index'
+
   # TEST
 get 'test' => 'listings#test'
+get 'test2' => 'listings#test2'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -27,6 +30,7 @@ get 'test' => 'listings#test'
   get "/sign_up" => "clearance/users#new", as: "sign_up"
 
   # Listings
+  get "/listings/autocomplete", to: "listings#autocomplete", as: "listings_autocomplete"
   resources :listings, except: [:destroy]
 
   # Reservations and payments

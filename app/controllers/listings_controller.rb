@@ -6,7 +6,7 @@ class ListingsController < ApplicationController
 	end
 
   def autocomplete
-    render json: Book.search(params[:query], autocomplete: true, limit: 10).map(&:country)
+   render json: Listing.search(params[:query], limit: 10).map(&:country)
   end
 
 	def new
@@ -39,7 +39,6 @@ class ListingsController < ApplicationController
 		# byebug
   	listing.update!(listing_params)
   	redirect_to listing_path
-		# WIP - listing.published == true when listing fully filled out.
 	end
 
 	def destroy

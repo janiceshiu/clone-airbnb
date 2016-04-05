@@ -16,3 +16,10 @@
 //= require bootstrap-sprockets
 //= require gmaps.js
 //= require_tree .
+
+$(document).on("ready page:load", function(){
+	$('#query').typeahead({
+		name: "listing",
+		remote: "/listings/autocomplete?query=%QUERY"
+	});
+});
