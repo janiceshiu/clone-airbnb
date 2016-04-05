@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   get 'searches/index'
 
+  get '/listings' => 'listings#index'
+
   # TEST
 get 'test' => 'listings#test'
+get 'test2' => 'listings#test2'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
