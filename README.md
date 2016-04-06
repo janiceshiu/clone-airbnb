@@ -3,6 +3,9 @@
 * A solo project for NEXT Academy's January 2016 bootcamp
 * Coded from 24 Feb 2016 to 07 Mar 2016
 
+# Notes
+* Since this was my first Rails app (and it had to be built in less than 2 weeks), I realised that I might not be able to learn everything at once. Thus, I prioritised building the back-end (to learn and practice Rails) and learning how to use and customise gems. Because of this, although I am familiar with RSpec, I did not develop the app in a TDD manner. I realize that this is a weakness.
+
 ## Stack
 #### Back End
 * Ruby 2.2
@@ -56,10 +59,6 @@
 
 ### Security
 Use Figaro to hide configuration environmental variables (eg: API keys)
-
-Testing
-----------
-This app was not developed in a TDD manner. The developer realizes that this is a weakness.
 
 Future Plans
 ------
